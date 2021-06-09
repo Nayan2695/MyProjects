@@ -1,0 +1,189 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Employee Details</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script> -->
+		<link rel="stylesheet" type="text/css" href="style.css"> 
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<h2>Employee Information</h2>
+				<button type="button" class="showaddform">Add</button>
+			</div>
+			
+		</header>
+	<table>
+		<thead>
+		  <tr>
+			<th>EMP_ID</th>
+			<th>EMP_NAME</th>
+			<th>EMAIL_ID</th>
+			<th>PHONE_NUMBER</th>
+			<th>ADRRESS</th>
+			<th>COMPANY_ID</th>
+			<th>COMPANY_NAME</th>
+			<th>ACTION</th>		
+		  </tr>
+		</thead>	
+		<tbody>
+	  </tbody>
+	</table>
+	<div class="input-container">
+		EMPID:       <input type="text" id="EMPID"  name="EMPID"><br>
+		EMPNAME:     <input type="text" id="ENAME" name="ENAME"> <br>
+		EMAILID:     <input type="text" id="MAILID" name="MAILID"> <br>
+		PHONENUMBER: <input type="text" id="PNO" name="PNO"><br>
+		ADDRESS:     <textarea cols="40" row="5"  id="ADDRESS" name="ADDRESS"></textarea><br>
+		<hr>  
+		<button class="GFG" id="closeaddform">Close</button> 
+		<button class="GFG" onclick="Save();">Save</button> 	
+	 </div>  
+	</body>
+	<script>
+
+	$(document).ready(function(){
+		getData();
+	});
+	function getData()
+		{
+		$.ajax({
+			url: "create.php",
+			type: 'POST',
+			async: true,
+			data: {'request':"getData"},
+			dataType: 'json',
+			success: function(arr) 
+			{
+				console.log("get data Success............");
+				console.log(arr);
+				$("tbody").html(""); 
+				var tbody="";
+				jQuery.each(arr["data"], function(index, item)
+				{
+					tbody += "<tr><td>"+item.EMP_ID+"</td><td>"+item.EMP_NAME+"</td><td>"+item.EMAIL_ID+"</td><td>"+item.PHONE_NUMBER+"</td><td>"+item.ADDRESS+"</td><td>"+item.COMPANY_ID+"</td><td>"+item.COMPANY_NAME+"</td><td><button type='button' class='Deleteitem' id="+item.EMP_ID+">Delete</button> <button type='button' class='Edititem' id="+item.EMP_ID+">Edit</button></td></tr>";
+				});
+				$("tbody").append(tbody); 
+				},
+				error: function(jqXHR, textStatus, errorThrown) 
+				{
+					 console.log(textStatus);
+					 console.log(errorThrown);
+					 console.log(jqXHR);
+				}
+			});
+		}
+function Save()
+{
+	var EMPID=$("#EMPID").val();
+	var ENAME=$("#ENAME").val();
+	var MAILID=$("#MAILID").val();
+	var PNO=$("#PNO").val();
+	var ADDRESS=$("#ADDRESS").val();
+	console.log("EMPID: "+EMPID);
+	console.log("ENAME: "+ENAME);
+	console.log("MAILID: "+MAILID);
+	console.log("PNO: "+PNO);
+	console.log("ADDRESS: "+ADDRESS);				
+	 $.ajax({
+		url: "create.php",
+		type: 'POST',
+		async: true,
+			data: {'request':"adddata",'EMPID':EMPID,'ENAME':ENAME,'MAILID':MAILID,'PNO':PNO,'ADDRESS':ADDRESS},
+			dataType: 'json',
+			success: function(data) {
+				console.log("Success............");
+				console.log(data);
+				$(".input-container").hide();
+				if(data["result"]==1)
+				{
+				   alert(data["msg"]);
+				   getData();
+				}
+				else
+				{
+				    alert(data["msg"]);
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log(textStatus);
+				console.log(errorThrown);
+				console.log(jqXHR);
+			}
+		});
+	}
+function deleteData(EMP_ID){ 
+    $.ajax({
+		url:'create.php',
+		type:'POST',
+		data:{'request':"deleteData",'EMP_ID':EMP_ID},
+		dataType:'json',
+		success:function(data) 
+		{
+		if (data["result"] == 1) 
+		{  
+		    alert(data["msg"]); 
+			getData();
+		} 
+		else
+		{ 
+			alert(data["msg"]); 
+		}
+	}
+	});
+}
+
+function editData(EMP_ID){
+$.ajax({
+	url:'create.php',
+	type:'POST',
+	data:{'request':"editData",'EMP_ID':EMP_ID},
+	dataType:'json',
+	success:function(result)
+	{
+	    console.log(result["data"]);
+	    $(".input-container").show();
+	   	$("#EMPID").val(EMP_ID);
+		$("#ENAME").val(result["data"][0]['EMP_NAME']);
+		$("#MAILID").val(result["data"][0]['EMAIL_ID']);
+		$("#PNO").val(result["data"][0]['PHONE_NUMBER']);
+		$("#ADDRESS").val(result["data"][0]['ADDRESS']);
+	} 	  	
+		
+});
+}	
+	$(document).on("click",".Deleteitem",function()
+	{
+	  
+		var EMP_ID=$(this).attr("id");
+		var confirmalert = confirm("Are you sure?");
+		if (confirmalert) 
+		{
+			deleteData(EMP_ID);
+		}
+		
+	});
+	$(document).on("click",".Edititem",function()
+	{  
+	    var EMP_ID=$(this).attr("id");
+		var confirmalert = confirm("you want edit information ?");
+		if (confirmalert)  
+		{ 
+	       editData(EMP_ID); 
+		}
+	
+			
+	});		 
+	$(document).on("click",".showaddform",function()
+	{
+		$("input").val("");
+		$("textarea").val("");
+		$(".input-container").show();
+	});
+	$(document).on("click","#closeaddform",function()
+	{
+		$(".input-container").hide();
+	});
+	</script>
+</html>

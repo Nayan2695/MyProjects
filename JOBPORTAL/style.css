@@ -1,0 +1,135 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Verdana, Geneva, sans-sarif;
+	font-size: 15px;
+}
+
+header {
+	height:100px;
+	position:relative;
+	width: 100%;
+}
+input[type=text],input[type=textbox] {
+	border: 3px groove #FFA5A5;
+	outline:0;
+	height:25px;
+	width: 275px;
+}
+.Details{
+
+	display:none;
+	position:fixed;
+	background:white;
+	top:10px;
+	width:100%;
+	padding: 3px 6px;
+	height:100%;
+	vertical-align: top;
+	text-align: right;
+
+}
+input{
+	font-size: inherit;
+}
+fieldset{
+	background-color: #f1f1f1;
+	border: none;
+	border-radius: 2px;
+	margin-bottom: 12px;
+	overflow: hidden;
+	padding: 0 .625em;
+}
+.example
+{
+	padding-top: 30px;;
+}
+
+.add
+{
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	background-color:blueviolet; /* Green */
+	border-radius: 8px;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+}
+th
+{
+	padding-top: 5px;
+    padding-bottom: 5p x;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+td
+{
+  border: 2px solid #dddddd;
+  text-align: center;
+  padding: 2px;
+}
+
+tr:nth-child(even) 
+{
+  background-color: #dddddd;
+}
+
+* {
+	box-sizing: border-box;
+  }
+
+form.example input[type=search] {
+	padding: 10px ;
+	font-size: 17px;
+	border: 1px solid grey;
+	border-radius: 18px;
+	width: 40%;
+	background: #f1f1f1;
+  }
+  
+  form.example input[type=button] {
+	
+	padding: 10px;
+	background: #2196F3;
+	color: white;
+	font-size: 17px;
+	border: 1px solid grey;
+	border-left: none; 
+	cursor: pointer;
+	border-radius: 18px;
+  }
+  
+form.example button:hover {
+	background: #0b7dda;
+  }
+  
+form.example::after {
+	content: "";
+	clear: both;
+	display: table;
+  }
+  #closeform
+  {
+	background-color: #e70a0a;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+  }
+  #Save
+  {
+	background-color: #127fe6; 
+	border: none;
+	color: white;
+	margin-left: 100px;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+  }

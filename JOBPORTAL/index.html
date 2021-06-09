@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <form class="example">
+        <input type="search" name="search" placeholder="Search..." id="Search"> 
+        <input type="button"  name="button" value="Search" id="Seachbutton"><br><br>
+      </form>
+        <div class="add">
+            <button class="btn btn-7 btn-7g btn-icon-only zmdi-plus-circle" style="color: white; background-color: blue;">Add</button>
+        </div>
+    </div>
+    </center> 
+    <center>
+    <table>
+		<thead>
+		  <tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>PhoneNumber</th>
+			<th>DateOfBirth</th>
+            <th>BestTimeToCall</th>
+            <th>Employeertype</th>
+            <th>Skills</th>
+            <th>Hobbies</th>
+            <th>Details</th>
+            <th>Action</th>
+		  </tr>
+		</thead>
+		<tbody>
+	  </tbody>
+    </center>
+    <div class="Details">
+    <center>
+    <fieldset>
+       <h3>Personal Information</h3>
+       <p>
+        <label for="first">Full Name:</label>
+        <input type="text" name="name" id="name"><br>
+         </p>
+        <p>
+       <label for="email">Email Address:</label>
+       <input type="text" name="email" id="email"><br>
+       <span class="error_form" id="email_error_message"></span>
+        </p>
+        <p>
+        <label for="phone">Phone Number:</label>
+        <input type="text" name="phonenumber" id="phonenumber">
+        </p>
+        <p>
+        <label for="dob">Date of birth:</label>
+        <input type="date" name="date" id="date"><br>
+        </p>  
+        <p>
+        <label>Best Time To Call:</label>
+        <input type="radio" name="Call"  class="Call"  id="morning">Morning
+        <input type="radio" name="Call"   class="Call" id="afternoon">Afternoon
+        <input type="radio" name="Call"   class="Call" id="evening">Evening
+        </p>   
+        <p>
+        <label for="EmployeeType">Employee Type:</label>
+        <select type="list" name="Employeertype" style="width:20%;" id="EmployeeType">
+        <option>--Select One--</option>
+        <option value="Experince">Experince</option>
+        <option value="Fresher">Fresher</option>
+        </select>
+        </p>
+        <p>
+        Skills Known:
+        <input type="checkbox" name="Skills" class="Skills"   id="html">html
+        <input type="checkbox" name="Skills" class="Skills"   id="php">php
+        <input type="checkbox" name="Skills" class="Skills"   id="asp">asp
+        <input type="checkbox" name="Skills" class="Skills"   id="java">java
+        <input type="checkbox" name="Skills" class="Skills"   id="design">Design
+        <input type="checkbox" name="Skills"   class="Skills"  id="c">c
+         <br><br>
+        <label for="Hobbies">Hobbies :</label>
+        <input type="text" name="hobbies" id="hobbies">
+         <br><br>
+        <label for="Personal">PersonalDeatils:</label>
+        <textarea type="text"  rows="4" cols="50" name="details" id="details"></textarea>
+        </p>
+        <p>
+         <lable>Upload file</lable>
+         <input type="file" name="file" id="file" value="File"><br>
+        </p>
+        <p>
+        <button class="Save" class="Save" id="Save">Save</button> 
+        <button class="Close" id="closeform">Close</button> 
+        </p>
+    </fieldset>
+    </center>
+    </div>
+</body>
+<script>
+  $("#Save").click(function(){  
+    var Skills = [];
+    $.each($("input[name='Skills']:checked"), function(){            
+    Skills.push($(this).attr("id"));
+    
+});
+   console.log(Skills);
+    Skills=Skills.toString();
+    //var CallTime = $("input[type=radio][name=Call]:checked").val();
+    var CallTime = $("input:radio[name=Call]:checked").attr("id");
+    var name=$("#name").val();
+	var email=$("#email").val();
+	var phonenumber=$("#phonenumber").val();
+	var date=$("#date").val();
+    var EmployeeType=$("#EmployeeType").val(); 
+    var hobbies=$("#hobbies").val();
+    var details=$("#details").val();
+    var pattern =/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/;
+    var val=pattern.test(email);
+    if (val==false)
+     {
+    alert("Invalid Email Format");
+       return false;
+    }
+    console.log("name: "+name);
+	console.log("email: "+email);
+    console.log("date: "+date);
+    console.log("CallTime: "+CallTime);
+	console.log("phonenumber: "+phonenumber);
+    console.log("EmployeeType: "+EmployeeType);
+    console.log("Skills: "+Skills);
+	console.log("hobbies: "+hobbies);
+    console.log("details: "+details);
+	 $.ajax({
+		url: "create.php",
+		type: 'POST',
+		async: true,
+			data: {'request':"addinfo",'name':name,'email':email,'phonenumber':phonenumber,'date':date,'CallTime': CallTime,'EmployeeType':EmployeeType,'Skills': Skills ,'hobbies':hobbies,'details':details},
+			dataType: 'json',
+			success: function(data) {
+				console.log("Success............");
+				console.log(data);
+				$(".Details").hide();
+				if(data["result"]==1)
+				{
+				   alert(data["msg"]);
+				}
+				else
+				{
+				    alert(data["msg"]);
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log(textStatus);
+				console.log(errorThrown);
+				console.log(jqXHR);
+            }
+    });
+ });
+function getinfo(Search)
+		{
+		$.ajax({
+			url: "create.php",
+			type: 'POST',
+			async: true,
+			data: {'request':"getinfo",'Search':Search},
+			dataType: 'json',
+			success: function(arr) 
+			{
+				console.log("get data Success............");
+				console.log(arr);
+				$("tbody").html(""); 
+				var tbody="";
+				jQuery.each(arr["data"], function(index, item)
+				{
+					tbody += "<tr><td>"+item.Name+"</td><td>"+item.Email+"</td><td>"+item.PhoneNumber+"</td><td>"+item.DateOfBirth+"</td><td>"+item.CallTime+"</td><td>"+item.EmployeeType+"</td><td>"+item.Skills+"</td><td>"+item.Hobbies+"</td><td>"+item.PersonalDeatils+"</td><td><button type='button' class='Deleteitem' id="+item.Name+">Delete</button> <button type='button' class='Edititem' id="+item.Name+">Edit</button></td></tr>";
+				});
+				$("tbody").append(tbody); 
+				},
+				error: function(jqXHR, textStatus, errorThrown) 
+				{
+					 console.log(textStatus);
+					 console.log(errorThrown);
+					 console.log(jqXHR);
+				}
+			});
+     
+		}
+function deleteinfo(Name){ 
+    //alert(Name);
+     $.ajax({
+		url:'create.php',
+		type:'POST',
+		data:{'request':"deleteinfo",'Name':Name},
+		dataType:'json',
+		success:function(data) 
+		{
+		if (data["result"] == 1) 
+		{  
+		    alert(data["msg"]); 
+			getinfo();
+		} 
+		else
+		{ 
+			alert(data["msg"]); 
+		}
+	}
+	});
+}
+function editinfo(Name){
+$.ajax({
+	url:'create.php',
+	type:'POST',
+	data:{'request':"editinfo",'Name':Name},
+	dataType:'json',
+	success:function(result)
+	{
+        console.log(result);
+	    console.log(result["data"]);
+	    $(".Details").show();
+        $("#name").val(result["data"][0]['Name']);
+		$("#email").val(result["data"][0]['Email']);
+		$("#phonenumber").val(result["data"][0]['PhoneNumber']);
+		$("#hobbies").val(result["data"][0]['Hobbies']);
+		$("#details").val(result["data"][0]['PersonalDeatils']);
+	} 	  	
+		
+});
+}	
+$(document).on("click",".Edititem",function()
+	{  
+	    var Name=$(this).attr("id");
+		var confirmalert = confirm("you want edit information ?");
+		if (confirmalert)  
+		{ 
+	       editinfo(Name); 
+		}
+	
+			
+	});		 
+
+
+$(document).on("click",".Deleteitem",function()
+	{
+	  
+		var Name=$(this).attr("id");
+		var confirmalert = confirm("Are you sure?");
+		if (confirmalert) 
+		{
+			deleteinfo(Name);
+		}
+		
+	});
+
+ $(document).on("click",".add",function()
+    {
+		$("input").val("");
+		$("textarea").val("");
+		$(".Details").show();
+    });
+ 
+$(document).on("click","#closeform",function()
+	{
+		$(".Details").hide();
+       
+	});
+
+$("#Seachbutton").on("click",function()
+{
+    var Search_term =$('#Search').val();
+    getinfo(Search_term);
+
+});
+
+$(".Details").submit(function()
+{
+         error_email = false;
+});
+    $("#email_error_message").hide();
+    var error_email = false;
+    $("#email").focusout(function()
+      {
+           check_email();
+      });
+
+
+function check_email() {
+    var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    var email = $("#email").val();
+    if (pattern.test(email) && email !== '')
+    {
+        $("#email_error_message").html("valid Email");
+        $("#email_error_message").show();
+        $("#email").css("border-bottom","2px solid #34F458");
+    }
+    else
+    {
+        $("#email_error_message").html("Invalid Email");
+        $("#email_error_message").show();
+        $("#email").css("border-bottom","2px solid #F90A0A");
+        error_email = true;
+     }
+    };
+</script>
+</html>

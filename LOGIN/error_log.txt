@@ -1,0 +1,5 @@
+
+ 21-05-25 08:51:48: insert into companyinfo(CompanyName,Address,City,State,ZipCode,Country) values ('Infosys', 'sdas','wwe', 'weew','1234','edwew')
+
+ 21-05-26 11:31:40: insert into companyinfo(CompanyName,Address,City,State,ZipCode,Country) values ('sdas', 'dssdd','dsdd', 'dd','','ds')
+ 21-05-26 12:13:54: insert into companyinfo(CompanyName,Address,City,State,ZipCode,Country) values ('Infosys', 'Electronic city','Bengaluru', 'Karnataka','560078','India')

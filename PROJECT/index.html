@@ -1,0 +1,187 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>DEATILS</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script> -->
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<h2>postprocessingmaster</h2>
+				<button type="button" class="showaddform">Add</button>
+			</div>
+
+		</header>
+	<br>
+	<br>
+	<table>
+		<thead>
+		  <tr>
+			<th>SlNO</th>
+			<th>Name</th>
+			<th>CreateDate</th>
+			<th>Actions</th>
+
+		  </tr>
+		</thead>
+		<tbody>
+	  </tbody>
+	</table>
+	<div class="input-container">
+	<label>
+		ENTER Name:<input type="text" id="NAME" name="NAME"> <br>
+		<hr>
+
+		<button class="GFG" id="closeaddform">Close</button>
+		<button class="GFG" onclick="Save();">Submit</button>
+		</label>
+	 </div>
+	</body>
+	<script>
+	$(document).ready(function(){
+		getData();
+	});
+	function getData()
+		{
+		$.ajax({
+			url: "create.php",
+			type: 'POST',
+			async: true,
+			data: {'request':"getData"},
+			dataType: 'json',
+			success: function(arr)
+			{
+				console.log("get data Success............");
+				console.log(arr);
+				$("tbody").html("");
+				var tbody="";
+				jQuery.each(arr["data"], function(index, item)
+				{
+					tbody += "<tr><td>"+item.SlNO+"</td><td>"+item.Name+"</td><td>"+item.Timestamp+"</td><td><button type='button' class='Deleteitem' id="+item.SlNO+">Delete</button><button type='button' class='Edititem' id="+item.SlNO+">Edit</button></td></tr>";
+				});
+				$("tbody").append(tbody);
+				},
+				error: function(jqXHR, textStatus, errorThrown)
+				{
+					 console.log(textStatus);
+					 console.log(errorThrown);
+					 console.log(jqXHR);
+				}
+			});
+		}
+
+	var getID=0;
+	function Save(){
+	var NAME=$("#NAME").val();
+	console.log("NAME: "+NAME);
+	$.ajax({
+		url: "create.php",
+		type: 'POST',
+		async: true,
+		data: {'request':"adddata",'NAME':NAME,'getNum':getID},
+		dataType: 'json',
+		success: function(data)
+		{
+			console.log("Success............");
+			console.log(data);
+			
+			if(data["result"]==1)
+			{
+			  alert(data["msg"]);
+			  $(".input-container").hide();
+			    getData();
+			}
+			else
+			{
+			  alert(data["msg"]);
+			}
+		},
+		error: function(jqXHR, textStatus, errorThrown)
+		{
+			console.log(textStatus);
+			console.log(errorThrown);
+			console.log(jqXHR);
+		}
+		});
+	}
+	function editData(SlNO)
+	{
+	$.ajax({
+	url:'create.php',
+	type:'POST',
+	data:{'request':"editData",'SlNO':SlNO},
+	dataType:'json',
+	success:function(data)
+	{
+	    console.log(data);
+	    console.log(data['Name']);
+	    $(".input-container").show();
+	   	$("#NAME").val(data['Name']);
+		if(data["result"]==1)
+		{
+		  alert(data["msg"]);
+		  getData();
+	    }
+	else
+	    {
+	     alert(data["msg"]);
+	}
+}
+});
+}
+function deleteData(SlNO){
+	$.ajax({
+		url:'create.php',
+		type:'POST',
+		data:{'request':"deleteData",'SlNUM':SlNO},
+		dataType:'json',
+		success:function(data) {
+		if (data == 1)
+		{
+			alert("data deleted");
+		}
+		else
+		{
+			getData();
+		}
+		}
+	});
+}
+	$(document).on("click",".Deleteitem",function()
+	{
+
+		var SlNO=$(this).attr("id");
+		var confirmalert = confirm("Are you sure?");
+		if (confirmalert)
+		{
+			deleteData(SlNO);
+		}
+	});
+	$(document).on("click",".showaddform",function()
+	{
+		$("input").val("");
+		$("textarea").val("");
+		$(".input-container").show();
+		getID=0;
+	});
+	$(document).on("click",".Edititem",function()
+	{
+	    var SlNO=$(this).attr("id");
+		//alert(SlNO);
+		getID=SlNO;
+		//alert(SlNO);
+		var confirmalert = confirm("you want edit information ?");
+		if (confirmalert)
+		{
+	       editData(SlNO);
+		}
+
+	});
+	$(document).on("click","#closeaddform",function()
+	{
+		$(".input-container").hide();
+	});
+	</script>
+	</html>

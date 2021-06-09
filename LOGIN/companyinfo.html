@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+  <header class="heading">
+  <div class="logo">
+      <h2>CompanyDetails</h2>
+        <a href="index.html"><button type="button" class="Closedetails" id="Closedetails">Close</button></a>
+        <button type="button" class="Showform" id="enter">Add</button>
+  </div>
+</header>
+<div class="tableinfo">
+<br>
+<br>
+<table>
+    <thead>
+        <tr>
+        <th>CompanyName</th>
+        <th>ADRRESS</th>
+        <th>City</th>
+        <th>State</th>
+        <th>ZipCode</th>
+        <th>Country</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <div class="input_form">
+  		CompanyName<input type="text" id="name"  name="cname"><li class="rq">*Required Field</li>
+  		ADDRESS<br><textarea name="address" id=Address rows="3" cols="53"></textarea><br>
+  		City<input type="text" id="city" name="city"> <br>
+  		State<input type="text" id="state" name="state"><br>
+      ZipCode<input type="text" id="ZipCode" name="ZipCode"><li class="rq">*Required Field</li><br>
+      Country<input type="text" id="Country" name="Country"><li class="rq">*Required Field</li><br>
+      <button class="Saveinfo" onclick="savedetails();">Save</button>
+  		<button class="Closeinfo" id="closecompanyform">Close</button>
+  	 </div>
+     </div>
+  </body>
+<script type="text/javascript">
+function savedetails()
+ {
+ 	var name=$("#name").val();
+ 	var Address=$("#Address").val();
+ 	var City=$("#city").val();
+ 	var State=$("#state").val();
+ 	var ZipCode=$("#ZipCode").val();
+  var Country=$("#Country").val();
+  if (ZipCode== null || ZipCode == "", Country == null || Country == "")
+  {
+    alert("Please Input ZipCode / Country");
+    return false;
+  }
+  if(name==0)
+  {
+    alert("Please Provide CompanyName");
+    return false;
+  }
+ 	console.log("name: "+name);
+ 	console.log("Address: "+Address);
+ 	console.log("City: "+City);
+ 	console.log("State: "+State);
+ 	console.log("ZipCode: "+ZipCode);
+  console.log("Country: "+Country)
+    $.ajax({
+  	url: "create.php",
+ 		type: 'POST',
+ 		async: true,
+ 		data: {'request':"addcompanyinfo",'name':name,'Address':Address,'City':City,'State':State,'ZipCode':ZipCode,'Country':Country},
+ 		dataType: 'json',
+ 		success: function(data) {
+    console.log("Success............");
+ 		console.log(data);
+    if(data["result"]==1)
+    {
+          alert(data["msg"]);
+        	$(".input_form").hide();
+          getDetails();
+    }
+    else
+    {
+          alert(data["msg"]);
+    }
+
+ 		},
+ 	error: function(jqXHR, textStatus, errorThrown)
+  {
+  	console.log(textStatus);
+ 		console.log(errorThrown);
+ 		console.log(jqXHR);
+ 	}
+ 	});
+ 	}
+  $(document).ready(function()
+  {
+		  getDetails();
+	});
+  function getDetails()
+	{
+		  $.ajax({
+			url: "create.php",
+			type: 'POST',
+			async: true,
+			data: {'request':"getinfo"},
+			dataType: 'json',
+			success: function(arr)
+			{
+			console.log("get data Success............");
+			console.log(arr);
+      if(arr["result"]==1)
+      {
+          alert(arr["msg"]);
+          $(".input_form").hide();
+      }
+      else
+      {
+          alert(arr["msg"]);
+      }
+			$("tbody").html("");
+			var tbody="";
+			jQuery.each(arr["data"], function(index, item)
+			{
+					   tbody += "<tr><td>"+item.CompanyName+"</td><td>"+item.Address+"</td><td>"+item.City+"</td><td>"+item.State+"</td><td>"+item.ZipCode+"</td><td>"+item.Country+"</td></tr>";
+			});
+			$("tbody").append(tbody);
+			},
+			error: function(jqXHR, textStatus, errorThrown)
+      {
+					 console.log(textStatus);
+					 console.log(errorThrown);
+					 console.log(jqXHR);
+			}
+		});
+	}
+  $(document).on("click",".Showform",function()
+	{
+		    $("input").val("");
+		    $("textarea").val("");
+		    $(".input_form").show();
+	});
+  $(document).on("click","#closecompanyform",function()
+	{
+		  $(".input_form").hide();
+	});
+</script>
+</html>

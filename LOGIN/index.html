@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+    <meta charset="utf-8">
+		<title>DEATILS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+      <body>
+        <header>
+      	   <div class="logo">
+        	  <button type="button" class="showaddform">ADD</button>
+          	</div>
+              <div id="container">
+                <div class="login">
+                <input type="text" id="EMAIL" name="id" placeholder="Enter Email"><br></div>
+                <input type="password" id="PASSWORD" name="Password" placeholder="Enter password" minlength="6" required><br></div>
+                <button type="button" onclick="Login();" value="login" id="LOGIN">Login</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    <div class="input-container">
+    <div id="right">
+		First Name<input type="text" id="fname" name="FirstName" ><br></div>
+    <div id="left">
+    Last Name<input type="text" id="lname" name="LastNAME" ><br></div>
+    Email Id<br><input type="text" id="email" name="emailid"><span class="error_form" id="email_error_message"></span><br>
+    Passowrd<input type="password" id="password" name="password" minlength="6" required><br>
+    Confirm Passowrd<input type="password" id="cpassword"  onkeyup='chekpwd();'name="ConfirmPassword"  minlength="6" required><span id="message"></span><br>
+    <button class="save" onclick="Save();" id="submit">Submit</button>
+    <button class="cancel" id="closeaddform">Close</button></div>
+	 </div>
+  </body>
+<script>
+  function Login()
+  {
+    var email=$("#EMAIL").val();
+    var password=$("#PASSWORD").val();
+    $.ajax({
+    url: "create.php",
+    type: 'POST',
+    async: true,
+    data: {'request':"login",'MAILID':email,'Password':password},
+    dataType:'json',
+    success:function(data){
+    console.log(data);
+    if(data["result"]==1)
+    {
+      alert(data["msg"]);
+      location.href="companyinfo.html";
+    }else
+    {
+      alert(data["msg"]);
+    }
+    $(".input-container").hide();
+  }
+});
+  }
+function Save()
+{
+	var fname=$("#fname").val();
+	var lname=$("#lname").val();
+	var email=$("#email").val();
+	var password=$("#password").val();
+	var cpassword=$("#cpassword").val();
+	console.log("Fname: "+fname);
+	console.log("Lname: "+lname);
+	console.log("MAILID: "+email);
+	console.log("password: "+password);
+	console.log("cpassword: "+cpassword);
+  var pattern =/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/;
+  var val=pattern.test(email);
+  if (val==false)
+  {
+    alert("Invalid Email Format");
+    return false;
+  }
+  if($('input[name="password"]').val().length < 6)
+   {
+       alert('Password Minimum length should be 6');
+       return false;
+   }
+  if((password)!=(cpassword))
+  {
+     alert("Invalid Passoword");
+     return false;
+  }
+	 $.ajax({
+		url: "create.php",
+		type: 'POST',
+		async: true,
+		data: {'request':"adddata",'fname':fname,'lname':lname,'email':email,'password':password,'cpassword':cpassword},
+		dataType: 'json',
+		success:function(data)
+     {
+				 console.log("Success............");
+				 console.log(data);
+         if(data["result"]==1)
+         {
+
+           alert(data["msg"]);
+
+         }else {
+           alert(data["msg"]);
+         }
+				 $(".input-container").hide();
+          $('.hover_bkgr_fricc').hide();
+		},
+    error: function(jqXHR, textStatus, errorThrown) {
+
+                  console.log(jqXHR);
+                  console.log(errorThrown);
+              }
+		});
+  }
+  function check_email() {
+    var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    var email = $("#email").val();
+    if (pattern.test(email) && email !== '')
+    {
+        $("#email_error_message").html("valid Email");
+        $("#email_error_message").show();
+        $("#email").css("border-bottom","2px solid #34F458");
+    }
+    else
+    {
+        $("#email_error_message").html("Invalid Email");
+        $("#email_error_message").show();
+        $("#email").css("border-bottom","2px solid #F90A0A");
+        error_email = true;
+     }
+    };
+    $(document).on("click",".showaddform",function()
+	   {
+		     $("input").val("");
+         $(".input-container").show();
+		     $("textarea").val("");
+	    });
+
+  $(document).on("click","#closeaddform",function()
+	{
+		  $(".input-container").hide();
+	});
+  $(document).ready(function()
+  {
+     $(".companydetails").hide();
+     $('.hover_bkgr_fricc').hide();
+        $("#LOGIN").on('click',function()
+        {
+        var email=$("#EMAIL").val();
+        var password=$("#PASSWORD").val();
+        if(email == "" || password == "")
+        alert("Please enter the inputs");
+
+     });
+  });
+  var chekpwd=function()
+  {
+  if(document.getElementById('password').value==document.getElementById('cpassword').value)
+  {
+     document.getElementById('message').innerHTML='Password matching';
+     document.getElementById('message').style.color='green';
+  }
+  else
+  {
+     document.getElementById('message').innerHTML='Password not matching';
+     document.getElementById('message').style.color='red';
+  }
+ }
+$(document).ready(function()
+ {
+   $("#input-container").submit(function()
+   {
+         error_email = false;
+   });
+    $("#email_error_message").hide();
+    var error_email = false;
+    $("#email").focusout(function()
+      {
+           check_email();
+      });
+});
+
+$(document).on("click",".showcompanyinfo",function()
+ {
+
+     $(".companydetails").show();
+     $(".login"),hide();
+  });
+</script>
+</html>

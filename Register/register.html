@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="style.css">
+<body> 
+<form action="/action_page.php" style="border:1px solid #ccc">
+  <div class="container">
+  <div class="form">
+  <div class="name">
+ 	Company Name<input type="data" id="name"  name="cname" class="form__field"><li class="rq">*Required Field</li></div>
+	<div class="address">
+  	ADDRESS<br><textarea name="address" id=Address rows="4" cols="80" class="form__field"></textarea><br>
+	</div>
+	<div class="data">
+  	City<input type="text" id="city" name="city" class="form__field"> <br></div>
+	<div class="data">
+  	State<input type="text" id="state" name="state" class="form__field"><br></div>
+	<div class="data1">
+    ZipCode<input type="text" id="ZipCode" name="ZipCode" class="form__field"><li class="rq">*Required Field</li><br></div>
+	<div class="data1">
+    Country<input type="text" id="Country" name="Country" class="form__field"><li class="rq">*Required Field</li><br></div>
+	<div class="button">
+    <button class="Saveinfo" onclick="savedetails();">Save</button>
+  	<button class="Closeinfo" id="closecompanyform">Close</button>
+	</div>
+  	 </div>
+  </div>
+</form>
+</body>
+</html>

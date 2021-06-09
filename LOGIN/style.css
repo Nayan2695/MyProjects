@@ -1,0 +1,289 @@
+body
+{
+  	margin-bottom:0px;
+  	padding: 0;
+  	font-family: Verdana, Geneva, sans-sarif;
+  	font-size: 20px;
+}
+.logo button
+{
+  	padding:0.5%;
+    margin-top: 40px;
+    margin-left:1200px;
+  	font-size: 12px;
+  	display: block;
+    background-color: #0099CC; /* Blue background color */
+    border-radius: 30px; /* Curve of border corners */
+    text-transform: uppercase; /* Make letters uppercase */
+    color: white; /* Text color */
+    cursor: pointer;
+    float: right;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+.input-container
+{
+  	display:none;
+  	position:fixed;
+  	top:40px;
+    left:180px;
+  	width:40%;
+  	height:40%;
+    padding-left:415px;
+    padding-top: 60px;
+    padding-right: 300px;
+    padding-bottom: 200px;
+    background-color: white;
+
+}
+.login
+{
+    padding-left: 450px;
+    padding-top: 140px;
+    padding-right: 200px;
+    padding-bottom: 40px;
+    background-color: white;
+
+}
+input[type=text]
+{
+    width: 45%;
+    height: 30px;
+    padding: 10px;
+    margin: 3px 0 10px 0;
+    display: grid;
+    border-style: double;
+    font-size:20px;
+    background: #f1f1f1;
+    margin-bottom: 2px;
+    border-radius: 18px;
+}
+input[type=password]
+{
+  width: 25%;
+  height: 30px;
+  padding: 10px;
+  margin-left: 450px;
+  border-style: double;
+  font-size:20px;
+  background: #f1f1f1;
+  margin-top: 0;
+  border-radius: 18px;
+}
+
+#LOGIN
+{
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    margin-left:588px;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+    opacity: 0.9;
+    position: absolute;
+    border-radius: 12px;
+    float: none;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.buttons
+{
+    width: 200px;
+    margin: 0 auto;
+    display: inline;}
+
+#right
+{
+    width: 43%;
+    float:left;
+
+}
+#left
+{
+    width: 57%;
+    float: left ;
+}
+#container
+{
+    padding: 16px;
+    background-position: center;
+    margin-top: 10px;
+}
+#closeaddform
+{
+    button-color:red;
+}
+.save
+{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 230px;
+    margin: 0 auto;
+    display: inline;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.cancel
+{
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 230px;
+    margin: 0 auto;
+    display: inline;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+#email
+{
+    width: 70%;
+}
+#password
+{
+    width: 70%;
+}
+#cpassword
+{
+    width: 70%;
+}
+.heading
+{
+    height:100px;
+    position:relative;
+    background:#0080ff;
+    width: 100%;
+}
+.logo
+{
+	  margin-left: 1%;
+	  padding:2%;
+}
+.logo h2
+{
+	width: 50%;
+    margin: 0px;
+    text-align: center;
+    display: inline;
+
+}
+table
+{
+    font-family: arial, sans-serif;
+    position:relative;
+    margin-top:50px;
+    margin:0 auto;
+    border-collapse: collapse;
+    width: 95%;
+    height:100%;
+}
+th
+{
+    padding-top: 12px;
+    padding-bottom: 12p x;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+td
+{
+	border: 2px solid #dddddd;
+	text-align: center;
+	padding: 2px;
+}
+
+tr:nth-child(odd)
+{
+    background-color: #dddddd;
+}
+#enter
+{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right:10px;
+    background-color: blue; /* Blue background color */
+    border-radius: 8px; /* Curve of border corners */
+    text-transform: uppercase; /* Make letters uppercase */
+    color: white; /* Text color */
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.name
+{
+    text-align: center;
+}
+.input_form
+{
+  	display:none;
+  	position:fixed;
+  	background:white;
+  	top:0px;
+  	width:100%;
+  	height:100%;
+    padding-left: 470px;
+    padding-bottom: 150px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    border: 3px solid #f1f1f1;
+    justify-content: center;
+}
+.Saveinfo
+{
+    background-color: Blue;
+    border: none;
+    color: white;
+    border-radius: 18px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 140px;
+}
+.Closeinfo
+{
+    background-color: Red;
+    border: none;
+    color: white;
+    border-radius: 18px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.rq
+{
+    color: red;
+}
+#Address
+{
+    width=10px;
+    font-size:20px;
+    padding-right: 10px;
+    border-radius: 18px;
+}
+#Closedetails
+{
+   float: right;
+   margin-top: 10px;
+   margin-left: 10px;
+   background-color: red; /* Blue background color */
+   border-radius: 30px; /* Curve of border corners */
+   text-transform: uppercase; /* Make letters uppercase */
+   color: white; /* Text color */
+   cursor: pointer;
+   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
