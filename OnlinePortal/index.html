@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="common.css">
+    <script src="common.js"></script> 
+     
+    <title>login</title>
+</head>
+
+<!-- <BANNER START -->
+
+<body>
+  <div class="banner">
+  <div class="row center">
+    <div class="col s6 m4">
+      <div class="card  light-1">
+        <div class="card-content black-text">
+        <div class="logo center"> 
+          <img src="images/384549-1528883149482_965-x-600-removebg-preview.png" class="img" alt="Girl in a jacket" width="300" height="150"></div>
+          <p class="center">Login if your already an existing customer or SignUp</p>
+        </div>
+        <div class="card-action">
+          <div class="button1">
+          <a href="shop.html" class="waves-effect waves-light btn blue " id="myBtn2" onclick="login()"><i class="material-icons left"></i>Login</a>
+          or
+          <a class="waves-effect waves-light btn green " id="myBtn" ><i class="material-icons right"></i>SignUp</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="Admin">
+   <a href="admin.html" class=" waves-effect waves-light btn red "><i class="material-icons"></i>login as Admin</a>
+</div>
+<!-- END OF BANNNER -->
+
+<!-- START OF SIGNUP -->
+<!-- The Modal -->
+<div id="myModal" class="modal1">
+  
+  <!-- Modal content -->
+  <div class="modal1-content">
+    <span class="close"><i class="material-icons">close</i></span>
+    <div class="logo center"> 
+      <img src="images/384549-1528883149482_965-x-600-removebg-preview.png" class="img" alt="Girl in a jacket" width="300" height="150"></div>
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <input  id="first_name" type="text" name="first_name" class="validate">
+            <label for="first_name">First Name</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="last_name" type="text" name="last_name" class="validate">
+            <label for="last_name">Last Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" name="email" class="validate">
+            <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="password" type="password" name="password" class="validate">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="cnfpassword" type="password" class="validate">
+            <label for="cnfpassword">Confirm Password</label>
+          </div>
+        </div>
+        <div class="button1 center ">
+          <a class="waves-effect waves-light btn blue" onclick="SignUp"><i class="material-icons left"></i>SignUp</a>
+          
+          <a class="waves-effect waves-light btn red "><i class="material-icons right"></i>Clear</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<!-- END OF SIGNUP -->
+
+<!-- START OF LOGIN -->
+<div id="myModal1" class="modal2">
+
+  <!-- Modal content -->
+  <div class="modal2-content">
+   
+    <span class="close1"><i class="material-icons">close</i></span>
+    <div class="logo center"> 
+      <img src="images/384549-1528883149482_965-x-600-removebg-preview.png" class="img" alt="Girl in a jacket" width="300" height="150"></div>
+
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" class="validate" important>
+            <label for="email">Email or UserName</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="button1 center ">
+          <a class="waves-effect waves-light btn blue "><i class="material-icons left"></i>Login</a>
+          
+          <a class="waves-effect waves-light btn red "><i class="material-icons right"></i>Clear</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<!-- END OF LOGIN -->
+
+</body> 
+</html>
