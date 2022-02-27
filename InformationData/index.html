@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <link rel="stylesheet" href="style.css">
+    <title>InformationData</title>
+    <link rel="icon" href="image/360_F_352553275_SuyjdnVS1QfQUT3Udi4Bghxx9JW13mBM-removebg-preview.png" type="image/icon type" style="height: 50px; width: 20px;">
+</head>
+
+<body class="body">
+    <nav class="nav blue">
+        <div class="nav-wrapper">
+    <img src="image/360_F_352553275_SuyjdnVS1QfQUT3Udi4Bghxx9JW13mBM-removebg-preview.png" class="img center" width="58px" height="62px" style="margin-left: 213px; margin-bottom: 8px;" >
+          <a href="#" class="brand-logo center"><strong class="strong" style="color: whitesmoke;">nformation</strong><strong class="data" style="color: rgb(243, 204, 75);">Data</strong></a>
+          <ul class="left "style="margin-left:30px;">
+              <li><input type="text" placeholder="Search.."></li>
+              <li><a class="btn-floating btn-medium cyan pulse"><i class="material-icons">search</i></a></li>
+          </ul>      
+          <ul class="right hide-on-med-and-down">
+           <li><a href="#modal1"  class="add"><b>Add Informartion</b></a></li>
+           <li><a a class=" tooltipped" data-position="left" data-tooltip="Nayan Gowda"><i class="material-icons">account_circle</i><b></b></a></li>
+           </ul>
+        </div>
+      </nav>
+      <marquee style="color: whitesmoke;"><b>Thank you for connecting with us WELCOME TO InformationData...</b></marquee>
+      <div class="card_image" style="margin: 25px;">
+        <div class="card horizontal" style="height: 530px;">
+          <div class="card-image">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content"> 
+                <table>
+                    <thead>
+                        <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Place</th>
+                                <th>Join Date</th>
+                                <th>End Date</th>
+                                <th>Action</th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                    </tbody>
+                </table>
+            <!-- Modal Structure -->
+                <div id="modal1" class="modal" >
+                    <div class="modal-content">
+                      <!-- NAVBAR -->
+                      <nav class="nav purple">
+                        <div class="nav-wrapper">
+                          <a href="#" class="brand-logo center">Information</a>
+                          <ul id="nav-mobile" class="left hide-on-med-and-down">
+                           
+                          </ul>
+                        </div>
+                      </nav>
+                            <!-- INPIUT FORM -->
+                        <div class="row">
+                            <form class="col s12">
+                              <div class="row">
+                                <div class="input-field col s6">
+                                  <input id="id" type="text" class="validate">
+                                  <label for="id">ID</label>
+                                </div>
+                                <div class="input-field col s6">
+                                  <input id="name" type="text" class="validate">
+                                  <label for="name">Name</label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="age" type="text" class="validate">
+                                  <label for="age">Age</label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="input-field col s12">
+                                  <label for="Gender">Gender</label><br>
+                                  <ul>
+                                   
+                                      <label>
+                                        <input class="with-gap" id="Male" name="group1" type="radio" value="Male"  />
+                                        <span>Male</span>
+                                      </label>
+                                      <label>
+                                        <input class="with-gap" id="Female" name="group1" type="radio" Value="Female"  />
+                                        <span>Female</span>
+                                      </label>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="email" type="email" class="validate">
+                                  <label for="email">Email</label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="num" type="text" class="validate">
+                                  <label for="num">Phone Number</label>
+                                </div>
+                              </div> <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="place" type="text" class="validate">
+                                  <label for="place">Place</label>
+                                </div>
+                              </div>
+                            </form>
+                            <div class="row">
+                              <div class="input-field col s12">
+                                <input id="jdate" type="date" class="validate">
+                                <label for="jdate">Join Date</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s12">
+                                <input id="edate" type="date" class="validate">
+                                <label for="edate">End Date</label>
+                              </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                    <a class="waves-effect waves-light btn blue" onclick="Save();">Submit</a>
+                    <a class="waves-effect waves-light btn red" style="margin-right: 250px;" id="close">Cancel</a>
+                    </div>
+                </div>
+            </div>  
+          </div>
+        </div>
+    </div>
+</body>
+<script src="common.js"></script>
+</html>
